@@ -20,7 +20,7 @@ public class PrintColumns {
                 "111111", "222222222", "3", "444444",
                 "11111111", "2", "3333", "444");
 
-        fillArraysByColumnsValues(numbers);
+        splitValuesByColumns(numbers);
 
         widthOne = maxValueInRow(hasOne);
         widthTwo = maxValueInRow(hasTwo);
@@ -30,7 +30,7 @@ public class PrintColumns {
         printColumns(4, numbers);
     }
 
-    public static void fillArraysByColumnsValues(List<String> numbers){
+    public static void splitValuesByColumns(List<String> numbers) {
         for (String number : numbers) {
             if (number.contains("1")) {
                 hasOne.add(number);
@@ -47,7 +47,7 @@ public class PrintColumns {
         }
     }
 
-    public static Integer maxValueInRow(List<String> values){
+    public static Integer maxValueInRow(List<String> values) {
         return values.stream().map(String::length).max(Integer::compareTo).get();
     }
 
