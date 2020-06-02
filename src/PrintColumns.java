@@ -14,9 +14,6 @@ public class PrintColumns {
     public static Integer widthThree;
     public static Integer widthFour;
 
-    public static String pattern = "%-<:widthOne:>s %-<:widthTwo:>s %-<:widthThree:>s %-<:widthFour:>s";
-
-
     public static void main(String[] args) {
         List<String> numbers = Arrays.asList("111", "222", "33333", "44",
                 "111111", "2222", "33", "4444",
@@ -54,20 +51,21 @@ public class PrintColumns {
         return values.stream().map(String::length).max(Integer::compareTo).get();
     }
 
-    public static String createTemplate() {
-        return pattern.
-                replace("<:widthOne:>", widthOne.toString()).
-                replace("<:widthTwo:>", widthTwo.toString()).
-                replace("<:widthThree:>", widthThree.toString()).
-                replace("<:widthFour:>", widthFour.toString());
-    }
-
     public static void printColumns(int columns, List<String> numbers) {
-        String template = createTemplate();
+        String pattern = "%-<:widthOne:>s %-<:widthTwo:>s %-<:widthThree:>s %-<:widthFour:>s";
+        String template = createTemplate(pattern);
 
         for (int i = 0; i < columns; i++) {
             System.out.printf(template, hasOne.get(i), hasTwo.get(i), hasThree.get(i), hasFour.get(i));
             System.out.println();
         }
+    }
+
+    public static String createTemplate(String pattern) {
+        return pattern.
+                replace("<:widthOne:>", widthOne.toString()).
+                replace("<:widthTwo:>", widthTwo.toString()).
+                replace("<:widthThree:>", widthThree.toString()).
+                replace("<:widthFour:>", widthFour.toString());
     }
 }
